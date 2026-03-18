@@ -258,20 +258,34 @@
 
         .service-card {
             background: white;
-            padding: 30px;
+            padding: 0;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            overflow: hidden;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             border: 2px solid var(--secondary);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .service-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
         }
 
         .service-icon {
@@ -283,6 +297,7 @@
         .service-card h4 {
             margin-bottom: 1rem;
             font-size: 1.3rem;
+            text-align: center;
         }
 
         .service-card p {
@@ -290,10 +305,17 @@
             font-size: 0.95rem;
             line-height: 1.6;
             flex-grow: 1;
+            text-align: center;
         }
 
         .service-card .btn-quote {
             align-self: stretch;
+        }
+
+        .service-card .btn {
+            width: 100%;
+            margin: 0;
+            padding: 14px 20px;
         }
 
         .service-list {
@@ -746,11 +768,11 @@
 <body>
     <nav id="navbar">
         <div class="nav-container">
-            <!-- INSERT LOGO HERE: printersjacinto@gmail.com has the logo file -->
-            <div class="logo-placeholder">
-                <i class="fas fa-print"></i> LOGO
-            </div>
-            <a href="#home" class="logo">JACINTO PRINTERS</a>
+            <!-- Logo image (placed in /images/logo/logo.jpeg) -->
+            <a href="#home" class="logo" style="display: flex; align-items: center; gap: 0.8rem;">
+                <img src="images/logo/logo.jpeg" alt="Jacinto Printers Logo" style="height: 45px; width: auto; border-radius: 8px;" />
+                <span>JACINTO PRINTERS</span>
+            </a>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
@@ -787,28 +809,54 @@
             <p style="text-align: center; margin-bottom: 3rem; color: var(--text);">Comprehensive printing, branding, signage, and balloon services</p>
             <div class="services-grid">
                 <div class="service-card">
-                    <i class="fas fa-print service-icon"></i>
-                    <h4>Printing Services</h4>
-                    <p>Professional digital printing for flyers, brochures, business cards, posters, banners, invitation cards, booklets, annual reports, calendars, and diaries. Perfect for any document need.</p>
-                    <button class="btn btn-primary open-quote-form" data-service="Printing Services"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                    <img src="images/service card images/printing services card.jpg" 
+                         alt="Stack of printed flyers and business cards" 
+                         class="service-image">
+                    <div class="service-content">
+                        <h4>Printing Services</h4>
+                        <p>Professional digital printing for flyers, brochures, business cards, posters, banners, invitation cards, booklets, annual reports, calendars, and diaries. Perfect for any document need.</p>
+                        <button class="btn btn-primary open-quote-form" data-service="Printing Services"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                    </div>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-tshirt service-icon"></i>
-                    <h4>Branding & Promotional</h4>
-                    <p>Elevate your brand with vehicle wraps, custom t-shirt printing, embroidery services, and promotional items including pens, mugs, key rings, and more. Build lasting brand impression.</p>
-                    <button class="btn btn-primary open-quote-form" data-service="Branding Services"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                    <img src="images/service card images/branding services card.png" 
+                         alt="Assorted promotional branded merchandise" 
+                         class="service-image">
+                    <div class="service-content">
+                        <h4>Branding & Promotional</h4>
+                        <p>Elevate your brand with vehicle wraps, custom t-shirt printing, embroidery services, and promotional items including pens, mugs, key rings, and more. Build lasting brand impression.</p>
+                        <button class="btn btn-primary open-quote-form" data-service="Branding Services"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                    </div>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-sign-hanging service-icon"></i>
-                    <h4>Signage & Displays</h4>
-                    <p>Eye-catching roll-up banners, PVC and canvas banners, wall banners, gazebos, pop-up displays, and promotional tables. Make your message visible and impactful.</p>
-                    <button class="btn btn-primary open-quote-form" data-service="Signage & Displays"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                    <img src="images/service card images/signage and disp card.jpeg" 
+                         alt="Professional signage and banner display" 
+                         class="service-image">
+                    <div class="service-content">
+                        <h4>Signage & Displays</h4>
+                        <p>Eye-catching roll-up banners, PVC and canvas banners, wall banners, gazebos, pop-up displays, and promotional tables. Make your message visible and impactful.</p>
+                        <button class="btn btn-primary open-quote-form" data-service="Signage & Displays"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                    </div>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-balloon service-icon"></i>
-                    <h4>Helium Balloons</h4>
-                    <p>Professional helium balloon services for events, promotions, and celebrations. Custom arrangements and decorations to make your event memorable and festive.</p>
-                    <button class="btn btn-primary open-quote-form" data-service="Helium Balloons"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                    <img src="images/service card images/hellium baloons cards.jpeg" 
+                         alt="Colorful helium balloon arrangement" 
+                         class="service-image">
+                    <div class="service-content">
+                        <h4>Helium Balloons</h4>
+                        <p>Professional helium balloon services for events, promotions, and celebrations. Custom arrangements and decorations to make your event memorable and festive.</p>
+                        <button class="btn btn-primary open-quote-form" data-service="Helium Balloons"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="images/service card images/car printing.jpeg" 
+                         alt="Professional vehicle branding and wraps" 
+                         class="service-image">
+                    <div class="service-content">
+                        <h4>Vehicle Branding</h4>
+                        <p>Transform your vehicles into mobile advertisements with professional vehicle wraps, decals, and branding solutions. Eye-catching designs that drive your brand visibility on the road.</p>
+                        <button class="btn btn-primary open-quote-form" data-service="Vehicle Branding"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -843,7 +891,6 @@
                         <li><i class="fas fa-chart-bar"></i> Rapid analysis of your spending</li>
                         <li><i class="fas fa-handshake"></i> Supplier negotiation & best practices</li>
                         <li><i class="fas fa-users"></i> We become an extension of your team</li>
-                        <li><i class="fas fa-clipboard-check"></i> Assistance with South African compliance registrations</li>
                     </ul>
                 </div>
                 <div class="testimonial-box">
@@ -868,7 +915,7 @@
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <a href="mailto:info@jacintoprinters.co.za">info@jacintoprinters.co.za</a>
+                        <a href="mailto:printersjacinto@gmail.com">printersjacinto@gmail.com</a>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-clock"></i>
@@ -922,6 +969,7 @@
                             <option value="Branding Services">Branding Services</option>
                             <option value="Signage & Displays">Signage & Displays</option>
                             <option value="Helium Balloons">Helium Balloons</option>
+                            <option value="Vehicle Branding">Vehicle Branding</option>
                             <option value="Multiple Services / Not Sure">Multiple Services / Not Sure</option>
                         </select>
                     </div>
