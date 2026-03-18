@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jacinto Printers - Premium Printing, Branding & Signage</title>
+    <title>Jacinto Printers - Premium Printing, Branding & Signage & Helium Balloons</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0A1F44;
-            --secondary: #C6A43F;
+            --primary: #0A2540;
+            --secondary: #D4AF37;
             --background: #F8F9FA;
             --text: #333333;
         }
@@ -68,6 +68,22 @@
             font-size: 1.5rem;
             font-weight: 700;
             text-decoration: none;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-right: 20px;
+            text-align: center;
+            line-height: 1.2;
         }
 
         .nav-menu {
@@ -152,6 +168,14 @@
             animation: fadeInUp 1s ease-out 0.4s both;
         }
 
+        .hero-subheading {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
         .btn {
             display: inline-block;
             padding: 12px 24px;
@@ -167,41 +191,27 @@
         .btn-primary {
             background: var(--secondary);
             color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .btn-primary:hover {
             background: #B8952F;
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
         .btn-secondary {
             background: transparent;
             color: white;
             border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
         .btn-secondary:hover {
             background: white;
             color: var(--primary);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .stat-item h3 {
-            color: var(--primary);
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
         /* Section Styles */
@@ -241,7 +251,7 @@
         /* Services Section */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 3rem;
         }
@@ -253,6 +263,9 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .service-card:hover {
@@ -269,6 +282,18 @@
 
         .service-card h4 {
             margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .service-card .btn-quote {
+            align-self: stretch;
         }
 
         .service-list {
@@ -311,12 +336,26 @@
         }
 
         .testimonial-box {
-            background: var(--background);
-            padding: 30px;
+            background: #FAFAF8;
+            padding: 2rem 2rem 2rem 2.5rem;
             border-radius: 10px;
-            border-left: 5px solid var(--secondary);
+            border-left: 4px solid var(--secondary);
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .testimonial-box::before {
+            content: '\201C';
+            font-size: 3rem;
+            color: var(--secondary);
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            opacity: 0.3;
+            font-style: normal;
         }
 
         /* Location Section */
@@ -422,6 +461,162 @@
             }
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .close-btn {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text);
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--secondary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group.required label::after {
+            content: ' *';
+            color: #e74c3c;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .modal .btn-primary {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-message {
+            text-align: center;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -434,6 +629,12 @@
         }
 
         /* Mobile Styles */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-menu {
                 position: fixed;
@@ -472,12 +673,38 @@
                 transform: rotate(45deg) translate(-5px, -6px);
             }
 
+            .hero {
+                padding-top: 100px;
+                padding-bottom: 40px;
+            }
+
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+                line-height: 1.3;
+                margin-bottom: 0.8rem;
+                word-wrap: break-word;
             }
 
             .hero-content p {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-subheading {
                 font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-content .supporting-text {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+                margin: 8px 0;
+                padding: 14px 20px;
             }
 
             .why-us-grid,
@@ -491,9 +718,27 @@
                 grid-template-columns: 1fr;
             }
 
-            .btn {
-                display: block;
-                margin: 10px 0;
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-box {
+                padding: 1.5rem 1.5rem 1.5rem 2rem;
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 25px;
+            }
+
+            .modal-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .close-btn {
+                align-self: flex-end;
             }
         }
     </style>
@@ -501,6 +746,10 @@
 <body>
     <nav id="navbar">
         <div class="nav-container">
+            <!-- INSERT LOGO HERE: printersjacinto@gmail.com has the logo file -->
+            <div class="logo-placeholder">
+                <i class="fas fa-print"></i> LOGO
+            </div>
             <a href="#home" class="logo">JACINTO PRINTERS</a>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home">Home</a></li>
@@ -519,29 +768,47 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Premium Printing • Branding • Signage</h1>
+                <h1>Premium Printing • Branding • Signage • Helium Balloons</h1>
+                <p class="hero-subheading">Now offering professional helium balloon services for events and promotions</p>
                 <p>Based in Mafikeng • Serving North West & Beyond</p>
-                <p class="supporting-text">Your one-stop solution for professional printing, custom branding, promotional products, and signage displays. Quality service that makes a difference.</p>
+                <p class="supporting-text">Your one-stop solution for professional printing, custom branding, promotional products, signage displays, and professional helium balloon services. Quality service that makes a difference.</p>
+                <a href="#" class="btn btn-primary open-quote-form"><i class="fas fa-clipboard-list"></i> Get a Quote</a>
                 <a href="https://wa.me/27686938036?text=Hi%20Jacinto%20Printers%2C%20I'm%20interested%20in%20" class="btn btn-primary" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
                 <a href="tel:0686938036" class="btn btn-secondary"><i class="fas fa-phone"></i> Call Us: 068 693 8036</a>
             </div>
         </div>
     </section>
 
-    <section class="stats">
+    <!-- Stats section removed as per requirements -->
+
+    <section id="services" class="fade-in">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>Est. 2023</h3>
-                    <p>Founded with expertise</p>
+            <h2>Our Services</h2>
+            <p style="text-align: center; margin-bottom: 3rem; color: var(--text);">Comprehensive printing, branding, signage, and balloon services</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-print service-icon"></i>
+                    <h4>Printing Services</h4>
+                    <p>Professional digital printing for flyers, brochures, business cards, posters, banners, invitation cards, booklets, annual reports, calendars, and diaries. Perfect for any document need.</p>
+                    <button class="btn btn-primary open-quote-form" data-service="Printing Services"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
                 </div>
-                <div class="stat-item">
-                    <h3>50+ Clients</h3>
-                    <p>Satisfied customers</p>
+                <div class="service-card">
+                    <i class="fas fa-tshirt service-icon"></i>
+                    <h4>Branding & Promotional</h4>
+                    <p>Elevate your brand with vehicle wraps, custom t-shirt printing, embroidery services, and promotional items including pens, mugs, key rings, and more. Build lasting brand impression.</p>
+                    <button class="btn btn-primary open-quote-form" data-service="Branding Services"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
                 </div>
-                <div class="stat-item">
-                    <h3>100% Quality</h3>
-                    <p>Focus on excellence</p>
+                <div class="service-card">
+                    <i class="fas fa-sign-hanging service-icon"></i>
+                    <h4>Signage & Displays</h4>
+                    <p>Eye-catching roll-up banners, PVC and canvas banners, wall banners, gazebos, pop-up displays, and promotional tables. Make your message visible and impactful.</p>
+                    <button class="btn btn-primary open-quote-form" data-service="Signage & Displays"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-balloon service-icon"></i>
+                    <h4>Helium Balloons</h4>
+                    <p>Professional helium balloon services for events, promotions, and celebrations. Custom arrangements and decorations to make your event memorable and festive.</p>
+                    <button class="btn btn-primary open-quote-form" data-service="Helium Balloons"><i class="fas fa-clipboard-list"></i> Get a Quote</button>
                 </div>
             </div>
         </div>
@@ -561,57 +828,6 @@
                     <div class="about-image">
                         <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Professional printing team at work" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="fade-in">
-        <div class="container">
-            <h2>Our Services</h2>
-            <p style="text-align: center; margin-bottom: 3rem; color: var(--text);">Comprehensive printing, branding, and signage solutions</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Modern printing press" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                    <i class="fas fa-print service-icon"></i>
-                    <h4>Digital Printing</h4>
-                    <ul class="service-list">
-                        <li>Flyers & Brochures</li>
-                        <li>Business Cards</li>
-                        <li>Posters & Banners</li>
-                        <li>Invitation Cards</li>
-                        <li>Booklets & Annual Reports</li>
-                        <li>Strategic Plans & Training Manuals</li>
-                        <li>NCR Books & Order Papers</li>
-                        <li>Calendars (Desk, Wall, Tent)</li>
-                        <li>A4 & A5 Diaries</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="T-shirt printing equipment" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                    <i class="fas fa-tshirt service-icon"></i>
-                    <h4>Branding & Promotional</h4>
-                    <ul class="service-list">
-                        <li>Vehicle Branding (Full wraps/partial)</li>
-                        <li>T-Shirt Printing (DTG/Direct to Garment)</li>
-                        <li>Embroidery (T-shirts, Overalls, Reflectives)</li>
-                        <li>Promotional Items: Pens, USB Sticks, Mugs, Key Rings, Water Bottles, Rulers</li>
-                        <li>Rubber Stamps (Colop 30, Colop 55, Dater)</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Signage and display examples" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                    <i class="fas fa-sign-hanging service-icon"></i>
-                    <h4>Signage & Displays</h4>
-                    <ul class="service-list">
-                        <li>Roll-up Banners</li>
-                        <li>PVC & Canvas Banners</li>
-                        <li>Wall Banners</li>
-                        <li>Gazebos & Sharkfins</li>
-                        <li>Pop-Up Banners & Slimline Banners</li>
-                        <li>A-Frames & Telescopics</li>
-                        <li>Promotional Tables</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -674,15 +890,227 @@
         </div>
     </section>
 
+    <!-- Quote Request Modal Form -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Get a Quote</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="quoteForm">
+                <div class="form-row">
+                    <div class="form-group required">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group required">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group required">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group required">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="Printing Services">Printing Services</option>
+                            <option value="Branding Services">Branding Services</option>
+                            <option value="Signage & Displays">Signage & Displays</option>
+                            <option value="Helium Balloons">Helium Balloons</option>
+                            <option value="Multiple Services / Not Sure">Multiple Services / Not Sure</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group required">
+                    <label for="projectDetails">Project Details</label>
+                    <textarea id="projectDetails" name="projectDetails" placeholder="Please describe exactly what you need, including any specific requirements, quantities, deadlines, or special requests..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="budget">Budget Range (Optional)</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select a budget range</option>
+                            <option value="R0 - R1000">R0 - R1000</option>
+                            <option value="R1000 - R5000">R1000 - R5000</option>
+                            <option value="R5000 - R10000">R5000 - R10000</option>
+                            <option value="R10000+">R10000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeline">How soon do you need this?</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Select timeline</option>
+                            <option value="Urgent (24-48hrs)">Urgent (24-48hrs)</option>
+                            <option value="This Week">This Week</option>
+                            <option value="This Month">This Month</option>
+                            <option value="Just Researching">Just Researching</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Quote Request</button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
-            <p>&copy; 2026 Jacinto Printers. All rights reserved.</p>
-            <p>Printing • Branding • Signage</p>
+            <p>&copy; 2026 Jacinto Printers Mafikeng. All rights reserved.</p>
+            <p>Printing • Branding • Signage • Helium Balloons</p>
         </div>
         <a href="#home" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
     </footer>
 
     <script>
+        // ============================================
+        // QUOTE FORM MODAL FUNCTIONALITY
+        // ============================================
+        
+        const quoteModal = document.getElementById('quoteModal');
+        const closeModal = document.getElementById('closeModal');
+        const quoteForm = document.getElementById('quoteForm');
+        const formMessage = document.getElementById('formMessage');
+        const openQuoteFormButtons = document.querySelectorAll('.open-quote-form');
+        const serviceSelect = document.getElementById('service');
+
+        // Open modal when "Get a Quote" button is clicked
+        openQuoteFormButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const service = button.dataset.service;
+                if (service) {
+                    serviceSelect.value = service;
+                }
+                quoteModal.classList.add('active');
+            });
+        });
+
+        // Close modal when close button is clicked
+        closeModal.addEventListener('click', () => {
+            quoteModal.classList.remove('active');
+            formMessage.style.display = 'none';
+        });
+
+        // Close modal when clicking outside the modal content
+        quoteModal.addEventListener('click', (e) => {
+            if (e.target === quoteModal) {
+                quoteModal.classList.remove('active');
+                formMessage.style.display = 'none';
+            }
+        });
+
+        // Handle form submission
+        quoteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const projectDetails = document.getElementById('projectDetails').value;
+            const budget = document.getElementById('budget').value;
+            const timeline = document.getElementById('timeline').value;
+
+            // Validate required fields
+            if (!fullName || !email || !phone || !service || !projectDetails) {
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Construct mailto body with all form details
+            const emailBody = `
+New Quote Request from Jacinto Printers Website
+
+CUSTOMER INFORMATION:
+Name: ${fullName}
+Email: ${email}
+Phone: ${phone}
+
+SERVICE DETAILS:
+Service Interested In: ${service}
+
+Project Details:
+${projectDetails}
+
+Budget Range: ${budget || 'Not specified'}
+Timeline: ${timeline || 'Not specified'}
+
+---
+This quote request was submitted from the Jacinto Printers website quote form.
+Please respond to the customer at ${email} or ${phone}.
+            `.trim();
+
+            // Create mailto link
+            const mailtoLink = `mailto:printersjacinto@gmail.com?subject=Quote%20Request:%20${encodeURIComponent(service)}&body=${encodeURIComponent(emailBody)}`;
+
+            // OPTION B: Using mailto: (requires no backend)
+            // This opens the user's email client with pre-filled content
+            window.location.href = mailtoLink;
+
+            // Show success message
+            showMessage(
+                'Thank you! Your email client will open to send your quote request to printersjacinto@gmail.com. Please click send to complete your request.',
+                'success'
+            );
+
+            // Optional: Reset form after 2 seconds
+            setTimeout(() => {
+                quoteForm.reset();
+                formMessage.style.display = 'none';
+                quoteModal.classList.remove('active');
+            }, 2000);
+
+            /* 
+            OPTION A: ALTERNATIVE - Using Formspree (requires backend service)
+            Uncomment the code below and comment out the mailto section above to use Formspree instead.
+            
+            First, set up Formspree:
+            1. Go to https://formspree.io/
+            2. Create a new form with email: printersjacinto@gmail.com
+            3. Replace 'YOUR_FORM_ID' below with your actual Formspree form ID
+            
+            fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                method: 'POST',
+                body: new FormData(quoteForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    showMessage('Quote request sent successfully! We will contact you shortly.', 'success');
+                    qForm.reset();
+                    setTimeout(() => {
+                        quoteModal.classList.remove('active');
+                        formMessage.style.display = 'none';
+                    }, 2000);
+                } else {
+                    showMessage('There was an error sending your request. Please try again.', 'error');
+                }
+            }).catch(error => {
+                showMessage('There was an error sending your request. Please try again.', 'error');
+            });
+            */
+        });
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+            formMessage.style.display = 'block';
+        }
+
+        // ============================================
+        // EXISTING FUNCTIONALITY
+        // ============================================
+
         // Mobile menu toggle
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
@@ -695,13 +1123,16 @@
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const href = this.getAttribute('href');
+                if (href !== '#' && !this.classList.contains('open-quote-form')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
                 // Close mobile menu after clicking
                 navMenu.classList.remove('active');
